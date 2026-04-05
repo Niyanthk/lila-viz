@@ -1,3 +1,11 @@
+import os, gdown, zipfile
+if not os.path.exists("player_data"):
+    import streamlit as st
+    st.info("⏳ Downloading data, please wait 1 minute...")
+    gdown.download("https://drive.google.com/uc?id=1kJjWiiTdqbOyYB8fhsdIgmrkWX_Nb-X2", "player_data.zip", quiet=False)
+    with zipfile.ZipFile("player_data.zip", "r") as z:
+        z.extractall(".")
+    st.rerun()
 import streamlit as st
 import pandas as pd
 import pyarrow.parquet as pq
